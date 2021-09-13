@@ -7,13 +7,13 @@ var_dump( $_POST );
 
 //checkea que no estén vacios y que sean un string
 if ( ! empty ( $_POST ['user_name'] ) 
-    && ! empty( $_POST ['password'] ) 
+    && ! empty( $_POST ['password'] )  
     && is_string( $_POST['user_name'])
     && is_string( $_POST['password'])
 ) {
     echo 'todo esta bien'; // si todo sale bien
 } else {
-    echo 'No está todo bien'; // si no sale bien
+  echo 'No está todo bien'; // si no sale bien
 }
 
 if ( ! empty( $_POST ['email'] ) 
