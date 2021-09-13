@@ -1,0 +1,105 @@
+/*RESET*/
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    outline: none; 
+}
+
+/*body formulario*/
+
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    
+    background: radial-gradient(circle, rgba(232,30,118,1) 0%, rgba(148,187,233,1) 100%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+h1 {
+    margin: 20px;
+}
+main.form{
+    
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    
+}
+form {
+  
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    
+}
+body label {
+    font-size: 15px;
+    height: auto;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    display: block;
+    background-color: #bdbbb7;
+    width: fit-content;
+}
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+input {
+    /* width: auto; */
+    /* height: auto; */
+    padding: 5px;
+    margin: 1px;
+    border-radius: 6px;
+    color: #4a4a4a;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="email"]::placeholder{
+    color: #4a4a4a;
+}
+input[type="checkbox"]{
+    width: 15px;
+}
+input[type="radio"]{
+    width: 15px;
+}
+input[type="textarea"]{
+    margin: 5px;
+    width: auto;
+    height: 157px;
+}
+label input[type="submit"] {
+    background-color: #ada9a9;
+    height: 30px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    body label {
+        width: 100%;
+    }
+}
