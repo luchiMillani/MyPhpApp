@@ -5,6 +5,8 @@ define ('SITE_VERSION', '0.0.1');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+require 'inc/connection.php';
+
 //$_SESSION['logged_in']   = true;
 //$_SESSION['type_animal'] = 1; //permiso para acceder a la pagina
 
@@ -27,16 +29,16 @@ ini_set('display_errors', 1);
 </head>
 
 <body class="login">
-    <h1>Logueate</h1>
+    <h1>Iniciá sesión</h1>
     <form action="login.php" method="POST">
         <section>
-            <label>Alias
+            <label>Alias:
                 <input type="text" name="alias">
             </label>
-            <label>Contraseña
+            <label>Contraseña:
                 <input type="password" name="password">
             </label>
-                <button type="submit">Log In</button>
+                <button type="submit">Entrar</button>
             </section>
         
     </form>

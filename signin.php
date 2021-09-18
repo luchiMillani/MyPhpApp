@@ -1,5 +1,8 @@
 <?php
 define ('SITE_VERSION', '0.0.1');
+
+require 'inc/connection.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +17,7 @@ define ('SITE_VERSION', '0.0.1');
     <title>MY PHP APP - Signin</title>
 </head>
 
-<body>
+<body class='signin'>
 
     <main class="form">
             <h1>¡ BIENVENIDE !</h1>
@@ -46,21 +49,13 @@ define ('SITE_VERSION', '0.0.1');
                     Password:
                     <input type="password" name="password"  value="" required>       
                 </label>
-            </section>
-            
-            <section id="animalElegido">
-                <label>
-                    ¿Qué animal preferís de mascota?:
-                    <select name="animalElegido"  required>
-                        <option value="gatite"> Gatite</option>
-                        <option value="perrite"> Perrite</option>
-                    </select>
-                </label>
-                
                 <label>
                     <input type="submit">
                 </label>
             </section>
+                
+                
+ 
         </form>
     </main>
 
@@ -70,19 +65,32 @@ define ('SITE_VERSION', '0.0.1');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-//echo '<pre>';
-//var_dump( $_POST );
 
 
-$_POST['birthdate'];
+
+
+$name          = trim( $_POST['name'] );
+$lastname      = trim( $_POST['lastname'] );
+$email         = trim( $_POST['email'] );
+$birthdate     = trim( $_POST['birthdate'] );
+$alias         = trim( $_POST['alias'] );
+$password      = trim( $_POST['password'] );
+
+
+
+
+
+
+
+
 //validar que no esté vacio, y su formato
 
-if ( ! empty( $_POST['birthdate'] ) ) {
-    $timestamp = strtotime( $_POST['birthdate'] );
+if ( ! empty( trim( $birthdate ) ) ) {
+    $timestamp = strtotime( $birthdate );
     $formatted  = date( 'Y-m-d', $timestamp );
 
-    if ( $_POST['birthdate'] === $formatted ) {
-        header( 'Location: logged-in.php' );;
+    if ( $birthdate === $formatted ) {
+        header( 'Location: logged-in.php' );
     } else{
         echo 'el formato recibido no es correcto';
     }
@@ -91,19 +99,39 @@ if ( ! empty( $_POST['birthdate'] ) ) {
 }
 
 
-    //checkea que no estén vacios y que sean un string
-if (   !   empty( $_POST['name'] ) 
-    && !   empty( $_POST['password'] )  
-    && !   empty( $_POST['alias'] )
-    && is_string( $_POST['name'] )
-    && is_string( $_POST['password'] )
-    && is_string( $_POST['alias'] ) ) {
+//checkea que no estén vacios y que sean un string
+if (   !   empty( $name ) 
+    && !   empty( $password )  
+    && !   empty( $alias )
+    && is_string( $name )
+    && is_string( $password )
+    && is_string( $alias ) ) {
  
 } 
 
-if ( ! empty( $_POST['email'] ) && filter_var( $_POST['email'], FILTER_VALIDATE_EMAIL ) ) {
+if ( ! empty( $email ) && filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
     header( 'Location: logged-in.php' );
-} else {
-    echo 'No esta bien';
+}
+
+if (
+    ! empty( $name ) && is_string( $name ) &&
+    ! empty( $lastname ) && is_string( $lastname ) &&
+    ! empty( $email ) && 
+    ! empty( $birthdate ) &&
+    ! empty( $alias ) && is_string( $alias ) &&
+    ! empty( $password ) && is_string( $password ) 
+)
+{
+    $connection-query( 
+        "INSERT INTO `usuaries` (`name`, `lastname`, `email`, `birthdate`, `password`, `alias`) 
+        VALUES (
+            '" . $connection->real_escape_string( $name ) . "', 
+            '" . $connection->real_escape_string( $lastname ) . "',
+            '" . $connection->real_escape_string( $email ) . "',
+            '" . $connection->real_escape_string( $birthdate ) . "',
+            '" . $connection->real_escape_string( $password ) . "', 
+            '" . $connection->real_escape_string( $alias ) . "',
+        );"    
+    );
 }
 

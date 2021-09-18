@@ -23,6 +23,9 @@ body{
     align-content: center;
     margin-top: 150px;
 }
+body.signin{
+    margin-top: 0;
+}
 h1 {
     margin: 15px;
 }

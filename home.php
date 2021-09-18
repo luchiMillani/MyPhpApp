@@ -11,9 +11,12 @@ if ( $_SESSION['logged_in'] ) {
     echo 'NOT OK';
 }
 
-die();
+//die();
 
-require 'inc/validate-user.php'
+
+require 'inc/validate-user.php';
+require 'inc/connection.php';
+
 
 ?>
 
