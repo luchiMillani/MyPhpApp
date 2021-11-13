@@ -1,87 +1,15 @@
 <?php
 define ('SITE_VERSION', '0.0.1');
-
 require 'inc/connection.php';
-
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,100;1,400&display=swap" rel="stylesheet">
-    <title>MY PHP APP - Signin</title>
-</head>
 
-<body class='signin'>
-
-    <main class="form">
-            <h1>¡ BIENVENIDE !</h1>
-            
-            <!--<form action="processing.php">-->    
-            <form action="signin.php" method="POST">
-            <section id="datosPersonales">
-                <label> <class= “datosPersonales” > 
-                    Nombre:
-                    <input type="text"  name="name" placeholder="Ingresa tu nombre" value="" required>
-                </label> 
-                <label>
-                    Apellido:
-                    <input type="text"  name="lastname"  placeholder="Ingresa tu apellido" value="" required>
-                </label>
-                <label>
-                    E-mail:
-                    <input type="email" name="email" placeholder="porejemplo@gmail.com" value="" required>
-                </label>
-                <label>
-                    Fecha de nacimiento:
-                    <input type="date" name="birthdate" >
-                </label> 
-                <label>
-                    Alias:
-                    <input type="text" name="alias"  value="" required>       
-                </label>
-                <label>
-                    Password:
-                    <input type="password" name="password"  value="" required>       
-                </label>
-                <label>
-                    <input type="submit">
-                </label>
-            </section>
-                
-                
- 
-        </form>
-    </main>
-
-</body>
-</html>
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-
-
-
 $name          = trim( $_POST['name'] );
 $lastname      = trim( $_POST['lastname'] );
 $email         = trim( $_POST['email'] );
 $birthdate     = trim( $_POST['birthdate'] );
 $alias         = trim( $_POST['alias'] );
 $password      = trim( $_POST['password'] );
-
-
-
-
-
-
-
 
 //validar que no esté vacio, y su formato
 
@@ -122,7 +50,7 @@ if (
     ! empty( $password ) && is_string( $password ) 
 )
 {
-    $connection-query( 
+    $connection->query(
         "INSERT INTO `usuaries` (`name`, `lastname`, `email`, `birthdate`, `password`, `alias`) 
         VALUES (
             '" . $connection->real_escape_string( $name ) . "', 
@@ -131,7 +59,64 @@ if (
             '" . $connection->real_escape_string( $birthdate ) . "',
             '" . $connection->real_escape_string( $password ) . "', 
             '" . $connection->real_escape_string( $alias ) . "',
-        );"    
+        );" 
     );
 }
+?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;1,100;1,400&display=swap" rel="stylesheet">
+    <title>MY PHP APP - Signin</title>
+</head>
+
+<body class='signin'>
+
+    <main class="form">
+            <h1>¡ BIENVENIDE !</h1> 
+            <form action="signin.php" method="POST">
+            <section id="datosPersonales">
+                <label> <class= “datosPersonales” > 
+                    Nombre:
+                    <input type="text"  name="name" placeholder="Ingresa tu nombre" value="" required>
+                </label> 
+                <label>
+                    Apellido:
+                    <input type="text"  name="lastname"  placeholder="Ingresa tu apellido" value="" required>
+                </label>
+                <label>
+                    E-mail:
+                    <input type="email" name="email" placeholder="porejemplo@gmail.com" value="" required>
+                </label>
+                <label>
+                    Fecha de nacimiento:
+                    <input type="date" name="birthdate" >
+                </label> 
+                <label>
+                    Alias:
+                    <input type="text" name="alias"  value="" required>       
+                </label>
+                <label>
+                    Password:
+                    <input type="password" name="password"  value="" required>       
+                </label>
+                <label>
+                    <input type="submit">
+                </label>
+            </section>
+                
+                
+ 
+        </form>
+    </main>
+
+</body>
+</html>
+<?php

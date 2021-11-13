@@ -1,23 +1,13 @@
 <?php
 define ('SITE_VERSION', '0.0.1');
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
-
 if ( $_SESSION['logged_in'] ) {
     echo 'OK';
 } else {
     echo 'NOT OK';
 }
-
-//die();
-
-
 require 'inc/validate-user.php';
 require 'inc/connection.php';
-
-
 ?>
 
 
